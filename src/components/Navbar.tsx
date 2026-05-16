@@ -49,9 +49,14 @@ export default function Navbar() {
             >
               Contact
             </Link>
-            <button className="bg-primary text-on-primary px-5 py-2 rounded-lg font-bold hover:brightness-110 active:scale-95 transition-all text-sm">
+            <Link 
+              href="/resume.pdf" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="bg-primary text-on-primary px-5 py-2 rounded-lg font-bold hover:brightness-110 active:scale-95 transition-all text-sm inline-flex items-center justify-center"
+            >
               Resume
-            </button>
+            </Link>
           </div>
         </div>
       </nav>

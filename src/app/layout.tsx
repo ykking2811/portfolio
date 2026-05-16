@@ -7,6 +7,9 @@ import QuantumBackground from "@/components/QuantumBackground";
 export const metadata: Metadata = {
   title: "Yashodhan Kulkarni | Portfolio",
   description: "Portfolio of Yashodhan Kulkarni, Backend + Embedded Systems Developer",
+  icons: {
+    icon: "/logo.jpg",
+  },
 };
 
 export default function RootLayout({
