@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
+import logo from "../../public/logo.jpg";
 
 export default function Navbar() {
   const pathname = usePathname();
@@ -13,7 +14,7 @@ export default function Navbar() {
       <nav className="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-md border-b border-outline-variant">
         <div className="flex justify-between items-center h-16 px-6 md:px-12 max-w-7xl mx-auto">
           <Link href="/" className="flex items-center gap-2">
-            <Image src="/logo.jpg" alt="YK Logo" width={32} height={32} className="rounded" />
+            <Image src={logo} alt="YK Logo" width={32} height={32} className="rounded" />
           </Link>
           <div className="hidden md:flex gap-8 items-center font-body text-label-md tracking-tight">
             <Link
