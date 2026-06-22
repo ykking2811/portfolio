@@ -87,12 +87,13 @@ export default function ThreeDPrintingPage() {
           <div className="relative rounded-2xl overflow-hidden bg-surface-container border border-outline-variant group">
             <div className="absolute inset-0 bg-gradient-to-t from-surface-container via-transparent to-transparent z-10 pointer-events-none" />
             <Image
-              src="/ender3-v2.png"
+              src="https://m.media-amazon.com/images/I/41z+fR2WhDL.jpg"
               alt="Creality Ender-3 V2 3D Printer"
-              width={800}
-              height={800}
+              width={500}
+              height={500}
               className="w-full h-auto object-cover grayscale-[20%] group-hover:grayscale-0 transition-all duration-700 scale-105 group-hover:scale-100"
               priority
+              unoptimized
             />
             {/* Badge */}
             <div className="absolute bottom-4 left-4 z-20 flex items-center gap-2 bg-surface-container-high/90 backdrop-blur-sm border border-outline-variant rounded-lg px-4 py-2">
