@@ -1,0 +1,119 @@
+"use client";
+
+import { useEffect, useRef, useState } from "react";
+
+export default function CustomCursor() {
+  const cursorRef = useRef<HTMLDivElement>(null);
+  const cursorDotRef = useRef<HTMLDivElement>(null);
+  const [isHovering, setIsHovering] = useState(false);
+  const [isClicking, setIsClicking] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const cursor = cursorRef.current;
+    const dot = cursorDotRef.current;
+    if (!cursor || !dot) return;
+
+    let mouseX = 0;
+    let mouseY = 0;
+    let ringX = 0;
+    let ringY = 0;
+    let rafId: number;
+
+    const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
+
+    const animate = () => {
+      ringX = lerp(ringX, mouseX, 0.12);
+      ringY = lerp(ringY, mouseY, 0.12);
+
+      cursor.style.transform = `translate(${ringX - 20}px, ${ringY - 20}px)`;
+      dot.style.transform = `translate(${mouseX - 4}px, ${mouseY - 4}px)`;
+      rafId = requestAnimationFrame(animate);
+    };
+
+    const handleMouseMove = (e: MouseEvent) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+      if (!isVisible) setIsVisible(true);
+    };
+
+    const handleMouseEnter = () => setIsVisible(true);
+    const handleMouseLeave = () => setIsVisible(false);
+
+    const handleMouseDown = () => setIsClicking(true);
+    const handleMouseUp = () => setIsClicking(false);
+
+    // detect hoverable elements
+    const interactiveSelectors =
+      "a, button, [role='button'], input, textarea, select, label, [data-cursor-hover]";
+
+    const handleHoverIn = (e: Event) => {
+      if ((e.target as Element).closest(interactiveSelectors)) {
+        setIsHovering(true);
+      }
+    };
+
+    const handleHoverOut = (e: Event) => {
+      if ((e.target as Element).closest(interactiveSelectors)) {
+        setIsHovering(false);
+      }
+    };
+
+    window.addEventListener("mousemove", handleMouseMove);
+    window.addEventListener("mouseenter", handleMouseEnter);
+    window.addEventListener("mouseleave", handleMouseLeave);
+    window.addEventListener("mousedown", handleMouseDown);
+    window.addEventListener("mouseup", handleMouseUp);
+    document.addEventListener("mouseover", handleHoverIn);
+    document.addEventListener("mouseout", handleHoverOut);
+
+    rafId = requestAnimationFrame(animate);
+
+    return () => {
+      window.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener("mouseenter", handleMouseEnter);
+      window.removeEventListener("mouseleave", handleMouseLeave);
+      window.removeEventListener("mousedown", handleMouseDown);
+      window.removeEventListener("mouseup", handleMouseUp);
+      document.removeEventListener("mouseover", handleHoverIn);
+      document.removeEventListener("mouseout", handleHoverOut);
+      cancelAnimationFrame(rafId);
+    };
+  }, [isVisible]);
+
+  return (
+    <>
+      {/* Outer ring — lags behind */}
+      <div
+        ref={cursorRef}
+        aria-hidden="true"
+        className="cursor-ring"
+        style={{
+          opacity: isVisible ? 1 : 0,
+          width: isHovering ? 48 : isClicking ? 28 : 40,
+          height: isHovering ? 48 : isClicking ? 28 : 40,
+          borderColor: isHovering
+            ? "var(--color-primary)"
+            : "rgba(56,189,248,0.55)",
+          backgroundColor: isHovering
+            ? "rgba(56,189,248,0.08)"
+            : "transparent",
+          borderWidth: isHovering ? 2 : 1.5,
+        }}
+      />
+      {/* Inner dot — tracks cursor exactly */}
+      <div
+        ref={cursorDotRef}
+        aria-hidden="true"
+        className="cursor-dot"
+        style={{
+          opacity: isVisible ? 1 : 0,
+          backgroundColor: isHovering
+            ? "var(--color-primary)"
+            : "rgba(56,189,248,0.9)",
+          transform: isClicking ? "scale(0.6)" : "scale(1)",
+        }}
+      />
+    </>
+  );
+}

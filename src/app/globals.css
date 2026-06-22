@@ -89,3 +89,51 @@ body {
 .hide-scrollbar::-webkit-scrollbar { 
   display: none; 
 }
+
+/* ── Custom circular cursor ── */
+body {
+  cursor: none;
+}
+
+a, button, [role='button'], input, textarea, select, label, [data-cursor-hover] {
+  cursor: none;
+}
+
+.cursor-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  border-style: solid;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transition:
+    width 0.18s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    height 0.18s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    border-color 0.2s ease,
+    background-color 0.2s ease,
+    opacity 0.3s ease,
+    border-width 0.18s ease;
+  mix-blend-mode: normal;
+}
+
+.cursor-dot {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 10000;
+  transition:
+    background-color 0.2s ease,
+    opacity 0.3s ease,
+    transform 0.1s ease;
+}
+
+@media (pointer: coarse) {
+  /* Re-enable native cursor on touch screens */
+  body { cursor: auto; }
+  .cursor-ring, .cursor-dot { display: none; }
+}
