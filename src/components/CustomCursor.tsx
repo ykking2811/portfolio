@@ -6,8 +6,12 @@ export default function CustomCursor() {
   const cursorRef = useRef<HTMLDivElement>(null);
   const cursorDotRef = useRef<HTMLDivElement>(null);
   const [isHovering, setIsHovering] = useState(false);
-  const [isClicking, setIsClicking] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
+
+  // Use refs for values consumed inside the rAF loop
+  // so React re-renders never clobber the transform.
+  const isClickingRef = useRef(false);
+  const [isClickingState, setIsClickingState] = useState(false); // only for ring size
 
   useEffect(() => {
     const cursor = cursorRef.current;
@@ -27,7 +31,12 @@ export default function CustomCursor() {
       ringY = lerp(ringY, mouseY, 0.12);
 
       cursor.style.transform = `translate(${ringX - 20}px, ${ringY - 20}px)`;
-      dot.style.transform = `translate(${mouseX - 4}px, ${mouseY - 4}px)`;
+
+      // Combine translate + scale in one string so React state changes
+      // on the dot element never reset the position.
+      const scale = isClickingRef.current ? 0.6 : 1;
+      dot.style.transform = `translate(${mouseX - 4}px, ${mouseY - 4}px) scale(${scale})`;
+
       rafId = requestAnimationFrame(animate);
     };
 
@@ -40,10 +49,15 @@ export default function CustomCursor() {
     const handleMouseEnter = () => setIsVisible(true);
     const handleMouseLeave = () => setIsVisible(false);
 
-    const handleMouseDown = () => setIsClicking(true);
-    const handleMouseUp = () => setIsClicking(false);
+    const handleMouseDown = () => {
+      isClickingRef.current = true;
+      setIsClickingState(true);
+    };
+    const handleMouseUp = () => {
+      isClickingRef.current = false;
+      setIsClickingState(false);
+    };
 
-    // detect hoverable elements
     const interactiveSelectors =
       "a, button, [role='button'], input, textarea, select, label, [data-cursor-hover]";
 
@@ -90,8 +104,8 @@ export default function CustomCursor() {
         className="cursor-ring"
         style={{
           opacity: isVisible ? 1 : 0,
-          width: isHovering ? 48 : isClicking ? 28 : 40,
-          height: isHovering ? 48 : isClicking ? 28 : 40,
+          width: isHovering ? 48 : isClickingState ? 28 : 40,
+          height: isHovering ? 48 : isClickingState ? 28 : 40,
           borderColor: isHovering
             ? "var(--color-primary)"
             : "rgba(56,189,248,0.55)",
@@ -101,7 +115,7 @@ export default function CustomCursor() {
           borderWidth: isHovering ? 2 : 1.5,
         }}
       />
-      {/* Inner dot — tracks cursor exactly */}
+      {/* Inner dot — transform is fully managed by the rAF loop */}
       <div
         ref={cursorDotRef}
         aria-hidden="true"
@@ -111,7 +125,7 @@ export default function CustomCursor() {
           backgroundColor: isHovering
             ? "var(--color-primary)"
             : "rgba(56,189,248,0.9)",
-          transform: isClicking ? "scale(0.6)" : "scale(1)",
+          // NO transform here — rAF owns it
         }}
       />
     </>
