@@ -25,6 +25,11 @@ rename.js
 # misc
 .DS_Store
 *.pem
+AGENTS.md
+CLAUDE.md
+*.md.bak
+.agents/
+.gemini/
 
 # debug
 npm-debug.log*
