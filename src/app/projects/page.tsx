@@ -1,5 +1,6 @@
 import Link from "next/link";
 import ProjectCard from "@/components/ProjectCard";
+import TextScrambler from "@/components/TextScrambler";
 
 export default function Projects() {
   return (
@@ -7,8 +8,8 @@ export default function Projects() {
       {/* Hero Section */}
       <header className="mb-16">
         <h1 className="text-5xl md:text-7xl font-headline font-bold text-on-surface tracking-tighter mb-4">
-          Crafting Systems<br />
-          <span className="text-primary">with Precision.</span>
+          <TextScrambler text="Crafting Systems" delay={150} /><br />
+          <span className="text-primary"><TextScrambler text="with Precision." delay={450} /></span>
         </h1>
         <p className="text-on-surface-variant text-lg max-w-2xl">
           Explore a collection of engineered solutions, from node synchronization protocols to intelligent control systems and community-focused platforms.

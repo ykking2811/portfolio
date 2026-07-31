@@ -25,7 +25,7 @@ export default function RootLayout({
           rel="stylesheet"
         />
       </head>
-      <body className="selection:bg-primary selection:text-on-primary min-h-screen flex flex-col relative z-0">
+      <body className="selection:bg-primary selection:text-on-primary min-h-screen flex flex-col relative z-0" suppressHydrationWarning>
         <QuantumBackground />
         <Navbar />
         <div className="flex-grow pt-16 relative z-10">

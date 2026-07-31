@@ -62,8 +62,8 @@ export default function QuantumBackground() {
       const scrollProgress = Math.min(scrollY / maxScroll, 1);
       const baseOpacity = Math.max(0.05, 1 - scrollProgress * 1.5);
 
-      ctx.strokeStyle = `rgba(167, 139, 250, ${0.25 * baseOpacity})`;
-      ctx.fillStyle = `rgba(167, 139, 250, ${0.6 * baseOpacity})`;
+      ctx.strokeStyle = `rgba(56, 189, 248, ${0.25 * baseOpacity})`;
+      ctx.fillStyle = `rgba(56, 189, 248, ${0.6 * baseOpacity})`;
 
       const spring = 0.05;
       const friction = 0.8;
