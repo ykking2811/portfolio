@@ -3,6 +3,7 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import QuantumBackground from "@/components/QuantumBackground";
+import CustomCursor from "@/components/CustomCursor";
 
 export const metadata: Metadata = {
   title: "Yashodhan Kulkarni | Portfolio",
@@ -26,6 +27,7 @@ export default function RootLayout({
         />
       </head>
       <body className="selection:bg-primary selection:text-on-primary min-h-screen flex flex-col relative z-0" suppressHydrationWarning>
+        <CustomCursor />
         <QuantumBackground />
         <Navbar />
         <div className="flex-grow pt-16 relative z-10">

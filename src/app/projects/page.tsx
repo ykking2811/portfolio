@@ -163,7 +163,7 @@ export default function Projects() {
           <div className="bg-surface-container-low border border-outline-variant rounded p-6 hover:bg-surface-container transition-colors group">
             <div className="flex justify-between mb-4">
               <span className="material-symbols-outlined text-secondary group-hover:text-primary transition-colors">deployed_code</span>
-              <a className="material-symbols-outlined text-secondary hover:text-primary transition-colors cursor-pointer">link</a>
+              <Link href="/projects/3d-printing" className="material-symbols-outlined text-secondary hover:text-primary transition-colors cursor-pointer">link</Link>
             </div>
             <h4 className="font-headline font-bold text-on-surface mb-2">3D Printing</h4>
             <p className="text-sm text-on-surface-variant mb-4">
