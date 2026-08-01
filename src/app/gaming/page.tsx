@@ -6,7 +6,7 @@ export default function Gaming() {
     {
       title: "Cyberpunk 2077",
       status: "Playing",
-      genre: "Action RPG",
+      genre: "Action RPG / Sci-Fi",
       platform: "PC",
       rating: "5/5",
       image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDiIrLGf3ld4D9wcbZ7TikV6svUm2jnpEtI-kIXlOlGyD13U_zgr2_s2ifTsWfUvNuTNllSNTcn882rswZh_-JLqfdw_5RdskU4sC3Ij04s0YpfTRgOHEHQToOJd6Tw3NlrCXc32J9oafHsW9sJ1JW_OOegL4wIdm_qcqeAqZPCe2Co8Jcvv0TOJeyqscqrCOxhWd52aAM7wrDTYo3vUUCHOKDLmPjR9NYcZ7rQbVhpnNwFNJghIbbLTikx41XYG8kghpkxZ73nOdw",
@@ -22,11 +22,11 @@ export default function Gaming() {
       badgeColor: "bg-primary text-on-primary"
     },
     {
-      title: "Hades II",
-      status: "Backlog",
-      genre: "Rogue-like",
+      title: "Red Dead Redemption 2",
+      status: "Mastered",
+      genre: "Open World / Action",
       platform: "PC",
-      rating: "En Route",
+      rating: "5/5",
       image: "https://lh3.googleusercontent.com/aida-public/AB6AXuBXrnRFEGB4xPKG_UyJ33oH6fj-3vZXsGB1WAw9pNJ6NHgVj0w00kbht3dPqtNojHCagLNJdzvAx07LXrg88vkT-pSi8p7Iia6HC3W7zq8goKe1K5FkTRGXKBJ7EmuweUk5-be3_EPtIJ1gtsjWeL6cavdhItQLcZYs3hW-1kwq_2elMQlhtpKJiWLR9Cso_P1_1em5KncgCwW5xwFFOVc4JqdMJVrDqqYybXEppKRx1HaXjZXKKM8rry6uZjyUDjmg0oc_rhoBSHs",
       badgeColor: "bg-surface-container-highest text-secondary-fixed"
     }

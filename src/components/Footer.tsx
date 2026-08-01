@@ -31,6 +31,14 @@ export default function Footer() {
           </a>
           <a
             className="text-on-surface-variant hover:text-primary transition-colors hover:underline decoration-primary underline-offset-4"
+            href="https://www.youtube.com/@TechGeniusYK"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            YouTube
+          </a>
+          <a
+            className="text-on-surface-variant hover:text-primary transition-colors hover:underline decoration-primary underline-offset-4"
             href="mailto:kulkarnis.yashodhan@gmail.com"
           >
             Email

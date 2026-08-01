@@ -54,17 +54,32 @@ export default function Contact() {
 
         {/* GitHub Card */}
         <a 
-          className="md:col-span-4 group bg-surface-container border border-outline-variant rounded-xl p-8 flex flex-col items-center justify-center text-center hover:border-primary/50 hover:-translate-y-1 active:scale-95 transition-all duration-300" 
+          className="md:col-span-6 group bg-surface-container border border-outline-variant rounded-xl p-8 flex flex-col items-center justify-center text-center hover:border-primary/50 hover:-translate-y-1 active:scale-95 transition-all duration-300" 
           href="https://github.com/ykking2811" 
           target="_blank" 
           rel="noopener noreferrer"
         >
-          <div className="bg-surface-container-high p-4 rounded-full mb-6 group-hover:scale-110 transition-transform">
-            <span className="material-symbols-outlined text-tertiary" style={{ fontSize: "48px" }}>code_blocks</span>
+          <div className="bg-surface-container-high p-4 rounded-full mb-4 group-hover:scale-110 transition-transform">
+            <span className="material-symbols-outlined text-tertiary" style={{ fontSize: "40px" }}>code_blocks</span>
           </div>
-          <h3 className="text-xl font-headline font-bold mb-2">GitHub</h3>
-          <p className="text-sm text-on-surface-variant mb-6 uppercase tracking-widest">Open Source Work</p>
-          <div className="text-primary font-mono font-bold">@ykking2811</div>
+          <h3 className="text-xl font-headline font-bold mb-1">GitHub</h3>
+          <p className="text-xs text-on-surface-variant mb-4 uppercase tracking-widest">Open Source Work</p>
+          <div className="text-primary font-mono font-bold text-sm">@ykking2811</div>
+        </a>
+
+        {/* YouTube Card */}
+        <a 
+          className="md:col-span-6 group bg-surface-container border border-outline-variant rounded-xl p-8 flex flex-col items-center justify-center text-center hover:border-primary/50 hover:-translate-y-1 active:scale-95 transition-all duration-300" 
+          href="https://www.youtube.com/@TechGeniusYK" 
+          target="_blank" 
+          rel="noopener noreferrer"
+        >
+          <div className="bg-surface-container-high p-4 rounded-full mb-4 group-hover:scale-110 transition-transform">
+            <span className="material-symbols-outlined text-red-500" style={{ fontSize: "40px", fontVariationSettings: "'FILL' 1" }}>smart_display</span>
+          </div>
+          <h3 className="text-xl font-headline font-bold mb-1">YouTube</h3>
+          <p className="text-xs text-on-surface-variant mb-4 uppercase tracking-widest">Tech &amp; Build Guides</p>
+          <div className="text-primary font-mono font-bold text-sm">@TechGeniusYK</div>
         </a>
 
         {/* Location/Map Placeholder */}
