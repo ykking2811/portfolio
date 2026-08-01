@@ -16,6 +16,16 @@ export default function Navbar() {
           <Link href="/" className="flex items-center gap-2">
             <Image src={logo} alt="YK Logo" width={32} height={32} className="rounded" suppressHydrationWarning />
           </Link>
+          <div className="flex md:hidden items-center gap-3">
+            <Link 
+              href="/resume.pdf" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="bg-primary text-on-primary px-3 py-1.5 rounded-md font-bold text-xs inline-flex items-center justify-center shadow"
+            >
+              Resume
+            </Link>
+          </div>
           <div className="hidden md:flex gap-8 items-center font-body text-label-md tracking-tight">
             <Link
               href="/"

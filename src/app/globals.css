@@ -164,12 +164,11 @@ body {
 }
 
 /* ── Custom circular cursor ── */
-body {
-  cursor: none;
-}
-
-a, button, [role='button'], input, textarea, select, label, [data-cursor-hover] {
-  cursor: none;
+@media (hover: hover) and (pointer: fine) {
+  body,
+  a, button, [role='button'], input, textarea, select, label, [data-cursor-hover] {
+    cursor: none;
+  }
 }
 
 .cursor-ring {
@@ -206,7 +205,10 @@ a, button, [role='button'], input, textarea, select, label, [data-cursor-hover] 
 }
 
 @media (pointer: coarse) {
-  /* Re-enable native cursor on touch screens */
-  body { cursor: auto; }
-  .cursor-ring, .cursor-dot { display: none; }
+  body, a, button, [role='button'], input, textarea, select, label {
+    cursor: auto !important;
+  }
+  .cursor-ring, .cursor-dot {
+    display: none !important;
+  }
 }
