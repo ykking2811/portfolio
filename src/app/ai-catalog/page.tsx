@@ -248,7 +248,9 @@ const CATEGORIES = [
 ] as const;
 
 const getImgSrc = (filename: string) => {
-  const base = process.env.NEXT_PUBLIC_BASE_PATH || "";
+  const base = process.env.NEXT_PUBLIC_BASE_PATH !== undefined 
+    ? process.env.NEXT_PUBLIC_BASE_PATH 
+    : (process.env.NODE_ENV === "production" ? "/portfolio" : "");
   return `${base}/ai-imgs/${filename}`;
 };
 
