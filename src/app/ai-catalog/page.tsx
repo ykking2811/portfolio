@@ -20,7 +20,7 @@ const AI_CATALOG_DATA: AICatalogItem[] = [
   {
     id: "1",
     title: "Independence Era Indian Diary & Quill",
-    filename: "DALL·E 2023-10-14 20.30.55 - Create a digital art composition that transports the viewer to Indipendence era of Indian. In the foreground, position a diary at the bottom left corn.png",
+    filename: "dalle-independence-era.png",
     category: "Digital Art & Historical",
     tool: "DALL-E 3",
     aspect: "landscape",
@@ -31,7 +31,7 @@ const AI_CATALOG_DATA: AICatalogItem[] = [
   {
     id: "2",
     title: "Steaming Chai Tea Latte Study",
-    filename: "Chai Tea Latte.png",
+    filename: "chai-tea-latte.png",
     category: "Conceptual & Texture",
     tool: "Generative AI",
     aspect: "square",
@@ -42,7 +42,7 @@ const AI_CATALOG_DATA: AICatalogItem[] = [
   {
     id: "3",
     title: "Ghibli Pastoral Meadow Study",
-    filename: "a-great-thing-by-ghibli-v0-1sfyp.jpg",
+    filename: "ghibli-meadow.jpg",
     category: "Anime & Ghibli",
     tool: "AI Anime Diffusion",
     aspect: "landscape",
@@ -53,7 +53,7 @@ const AI_CATALOG_DATA: AICatalogItem[] = [
   {
     id: "4",
     title: "Heritage Indian Manuscripts & Quill",
-    filename: "DALL·E 2023-10-14 20.31.34.png",
+    filename: "dalle-heritage-manuscript.png",
     category: "Digital Art & Historical",
     tool: "DALL-E 3",
     aspect: "landscape",
@@ -64,7 +64,7 @@ const AI_CATALOG_DATA: AICatalogItem[] = [
   {
     id: "5",
     title: "Vasubaras Traditional Illumination",
-    filename: "vasubaras .jpg",
+    filename: "vasubaras-festive.jpg",
     category: "Festive & Concepts",
     tool: "Photoshop & AI Synthesis",
     aspect: "wide",
@@ -75,7 +75,7 @@ const AI_CATALOG_DATA: AICatalogItem[] = [
   {
     id: "6",
     title: "Futuristic Cyber Study Concept",
-    filename: "Gemini_Generated_Image_a0scb5a0scb5a0sc.png",
+    filename: "gemini-cyber-study.png",
     category: "Conceptual & Texture",
     tool: "Gemini Vision",
     aspect: "portrait",
@@ -86,7 +86,7 @@ const AI_CATALOG_DATA: AICatalogItem[] = [
   {
     id: "7",
     title: "Dhanteras Festive Light & Gold Study",
-    filename: "analyser dhanteres.jpg",
+    filename: "dhanteras-luminous.jpg",
     category: "Festive & Concepts",
     tool: "Photoshop & Generative Fill",
     aspect: "landscape",
@@ -97,7 +97,7 @@ const AI_CATALOG_DATA: AICatalogItem[] = [
   {
     id: "8",
     title: "Isometric Block World Concept",
-    filename: "Oneblock.png",
+    filename: "oneblock-isometric.png",
     category: "Conceptual & Texture",
     tool: "AI Landscape Synth",
     aspect: "wide",
@@ -108,7 +108,7 @@ const AI_CATALOG_DATA: AICatalogItem[] = [
   {
     id: "9",
     title: "Ghibli Celestial Horizon",
-    filename: "a-great-thing-by-ghibli-v0-1si7w.png",
+    filename: "ghibli-horizon.png",
     category: "Anime & Ghibli",
     tool: "AI Anime Diffusion",
     aspect: "landscape",
@@ -119,7 +119,7 @@ const AI_CATALOG_DATA: AICatalogItem[] = [
   {
     id: "10",
     title: "Digital Matte Manipulation",
-    filename: "photo shop .jpg",
+    filename: "photoshop-matte.jpg",
     category: "Festive & Concepts",
     tool: "Adobe Photoshop & Generative AI",
     aspect: "landscape",
@@ -130,7 +130,7 @@ const AI_CATALOG_DATA: AICatalogItem[] = [
   {
     id: "11",
     title: "Surreal Ambient Reflection",
-    filename: "downloadedImage (1).png",
+    filename: "surreal-reflection.png",
     category: "Digital Art & Historical",
     tool: "Generative Diffusion",
     aspect: "square",
@@ -141,7 +141,7 @@ const AI_CATALOG_DATA: AICatalogItem[] = [
   {
     id: "12",
     title: "Neon Cyber Grid Backdrop",
-    filename: "bg.png",
+    filename: "cyber-grid-bg.png",
     category: "Conceptual & Texture",
     tool: "Generative Canvas",
     aspect: "wide",
@@ -152,7 +152,7 @@ const AI_CATALOG_DATA: AICatalogItem[] = [
   {
     id: "13",
     title: "Warm Acoustic Study Moodboard",
-    filename: "WhatsApp Image 2023-10-14 at 16.44.48_4c7b19ef.jpg",
+    filename: "cozy-study-moodboard.jpg",
     category: "Festive & Concepts",
     tool: "AI Image Processing",
     aspect: "square",
@@ -163,7 +163,7 @@ const AI_CATALOG_DATA: AICatalogItem[] = [
   {
     id: "14",
     title: "Acoustic & Nature Synthesis",
-    filename: "downloadedImage.png",
+    filename: "acoustic-nature.png",
     category: "Digital Art & Historical",
     tool: "Generative Diffusion",
     aspect: "landscape",
@@ -174,7 +174,7 @@ const AI_CATALOG_DATA: AICatalogItem[] = [
   {
     id: "15",
     title: "Cosmic Nebula Vista",
-    filename: "iTlSy.png",
+    filename: "cosmic-nebula.png",
     category: "Conceptual & Texture",
     tool: "AI Space Synth",
     aspect: "landscape",
@@ -185,7 +185,7 @@ const AI_CATALOG_DATA: AICatalogItem[] = [
   {
     id: "16",
     title: "Abstract Dynamic Energy Wave",
-    filename: "dsegfdseafgdgs.jpg",
+    filename: "abstract-energy.jpg",
     category: "Conceptual & Texture",
     tool: "Photoshop & AI Filters",
     aspect: "landscape",
@@ -196,7 +196,7 @@ const AI_CATALOG_DATA: AICatalogItem[] = [
   {
     id: "17",
     title: "Mechanical Component Conceptual Draft",
-    filename: "image.jpg",
+    filename: "mechanical-blueprint.jpg",
     category: "Conceptual & Texture",
     tool: "AI Concept Art",
     aspect: "landscape",
@@ -207,7 +207,7 @@ const AI_CATALOG_DATA: AICatalogItem[] = [
   {
     id: "18",
     title: "Minimalist Geometry Texture",
-    filename: "asdasd.png",
+    filename: "minimalist-vector.png",
     category: "Conceptual & Texture",
     tool: "AI Vector Synthesis",
     aspect: "square",
@@ -218,7 +218,7 @@ const AI_CATALOG_DATA: AICatalogItem[] = [
   {
     id: "19",
     title: "Atmospheric Horizon Rendering",
-    filename: "asd.jpg",
+    filename: "atmospheric-horizon.jpg",
     category: "Conceptual & Texture",
     tool: "AI Synthesizer",
     aspect: "portrait",
@@ -229,7 +229,7 @@ const AI_CATALOG_DATA: AICatalogItem[] = [
   {
     id: "20",
     title: "Architectural Wall Texture Study",
-    filename: "wall.jpg",
+    filename: "architectural-wall.jpg",
     category: "Conceptual & Texture",
     tool: "Material Diffusion AI",
     aspect: "landscape",
@@ -315,16 +315,16 @@ export default function AICatalog() {
               </blockquote>
 
               <p className="text-on-surface-variant text-sm md:text-base leading-relaxed">
-                This catalog presents my early visual generative AI experiments, digital art compositions, and prompt engineering studies. While these concepts showcase rapid visual ideation and aesthetic direction, my true technical core lies in <strong className="text-on-surface">mechanical CAD design, embedded control systems, and hardware-software robotics integration</strong>.
+                This catalog presents my creative visual AI experiments, digital art compositions, and media editing studies. I excel in <strong className="text-on-surface">image generation, video generation, video editing, and photo editing</strong> — bringing prompt engineering, visual direction, and creative storytelling to every production.
               </p>
             </div>
 
             <div className="flex flex-col items-start md:items-end gap-2 text-xs font-mono text-on-surface-variant border-t md:border-t-0 md:border-l border-outline-variant pt-4 md:pt-0 md:pl-6 min-w-[200px]">
-              <span className="text-primary font-bold">WORKFLOW FOCUS</span>
-              <span>• Prompt Engineering</span>
-              <span>• Visual Prototyping</span>
-              <span>• Creative Iteration</span>
-              <span>• CAD & Systems Core</span>
+              <span className="text-primary font-bold font-sans">CREATIVE EXPERTISE</span>
+              <span>• Image Generation</span>
+              <span>• Video Generation</span>
+              <span>• Video Editing</span>
+              <span>• Photo Editing</span>
             </div>
           </div>
         </div>
@@ -355,12 +355,10 @@ export default function AICatalog() {
             onClick={() => setSelectedItemIndex(idx)}
             className={`group relative rounded-2xl overflow-hidden bg-surface-container border border-outline-variant hover:border-primary/60 transition-all duration-500 cursor-pointer min-h-[260px] ${item.spanClass}`}
           >
-            <Image
-              src={`/ai-imgs/${encodeURIComponent(item.filename)}`}
+            <img
+              src={`/ai-imgs/${item.filename}`}
               alt={item.title}
-              fill
-              className="object-cover grayscale opacity-75 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700 ease-out"
-              sizes="(max-width: 768px) 100vw, 50vw"
+              className="absolute inset-0 w-full h-full object-cover grayscale opacity-75 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700 ease-out"
             />
             
             {/* Top Badge */}
@@ -433,13 +431,11 @@ export default function AICatalog() {
             </button>
 
             {/* Image Preview Container */}
-            <div className="md:w-2/3 h-64 md:h-[75vh] relative bg-black flex items-center justify-center">
-              <Image
-                src={`/ai-imgs/${encodeURIComponent(filteredItems[selectedItemIndex].filename)}`}
+            <div className="md:w-2/3 h-64 md:h-[75vh] relative bg-black flex items-center justify-center p-4">
+              <img
+                src={`/ai-imgs/${filteredItems[selectedItemIndex].filename}`}
                 alt={filteredItems[selectedItemIndex].title}
-                fill
-                className="object-contain"
-                priority
+                className="max-w-full max-h-full object-contain"
               />
             </div>
 
@@ -485,7 +481,7 @@ export default function AICatalog() {
               <div className="pt-6 border-t border-outline-variant flex justify-between items-center text-xs font-mono text-on-surface-variant">
                 <span>YEAR: {filteredItems[selectedItemIndex].year}</span>
                 <a
-                  href={`/ai-imgs/${encodeURIComponent(filteredItems[selectedItemIndex].filename)}`}
+                  href={`/ai-imgs/${filteredItems[selectedItemIndex].filename}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-primary hover:underline flex items-center gap-1"
