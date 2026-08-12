@@ -5,14 +5,26 @@ export default function Projects() {
   return (
     <main className="pt-16 pb-32 px-6 md:px-12 max-w-7xl mx-auto">
       {/* Hero Section */}
-      <header className="mb-16">
-        <h1 className="text-5xl md:text-7xl font-headline font-bold text-on-surface tracking-tighter mb-4">
-          Crafting Systems<br />
-          <span className="text-primary">with Precision.</span>
-        </h1>
-        <p className="text-on-surface-variant text-lg max-w-2xl">
-          Explore a collection of engineered solutions, from node synchronization protocols to intelligent control systems and community-focused platforms.
-        </p>
+      <header className="mb-16 flex flex-col md:flex-row md:items-end justify-between gap-6">
+        <div>
+          <h1 className="text-5xl md:text-7xl font-headline font-bold text-on-surface tracking-tighter mb-4">
+            Crafting Systems<br />
+            <span className="text-primary">with Precision.</span>
+          </h1>
+          <p className="text-on-surface-variant text-lg max-w-2xl">
+            Explore a collection of engineered solutions, from node synchronization protocols to intelligent control systems and community-focused platforms.
+          </p>
+        </div>
+
+        {/* Discrete AI Catalog Access Button */}
+        <Link
+          href="/ai-catalog"
+          className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-surface-container border border-outline-variant text-xs text-on-surface-variant hover:text-primary hover:border-primary/50 transition-all font-mono group self-start md:self-end"
+        >
+          <span className="w-2 h-2 rounded-full bg-primary/80 animate-pulse" />
+          <span>AI Visual Archive</span>
+          <span className="material-symbols-outlined text-sm group-hover:translate-x-0.5 transition-transform">arrow_forward</span>
+        </Link>
       </header>
 
       {/* Featured Projects - Bento Grid */}
