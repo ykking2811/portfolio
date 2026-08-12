@@ -247,6 +247,11 @@ const CATEGORIES = [
   "Festive & Concepts"
 ] as const;
 
+const getImgSrc = (filename: string) => {
+  const base = process.env.NEXT_PUBLIC_BASE_PATH || "";
+  return `${base}/ai-imgs/${filename}`;
+};
+
 export default function AICatalog() {
   const [activeCategory, setActiveCategory] = useState<string>("All Concepts");
   const [selectedItemIndex, setSelectedItemIndex] = useState<number | null>(null);
@@ -355,10 +360,13 @@ export default function AICatalog() {
             onClick={() => setSelectedItemIndex(idx)}
             className={`group relative rounded-2xl overflow-hidden bg-surface-container border border-outline-variant hover:border-primary/60 transition-all duration-500 cursor-pointer min-h-[260px] ${item.spanClass}`}
           >
-            <img
-              src={`/ai-imgs/${item.filename}`}
+            <Image
+              src={getImgSrc(item.filename)}
               alt={item.title}
-              className="absolute inset-0 w-full h-full object-cover grayscale opacity-75 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700 ease-out"
+              fill
+              unoptimized
+              className="object-cover grayscale opacity-75 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700 ease-out"
+              sizes="(max-width: 768px) 100vw, 50vw"
             />
             
             {/* Top Badge */}
@@ -432,10 +440,13 @@ export default function AICatalog() {
 
             {/* Image Preview Container */}
             <div className="md:w-2/3 h-64 md:h-[75vh] relative bg-black flex items-center justify-center p-4">
-              <img
-                src={`/ai-imgs/${filteredItems[selectedItemIndex].filename}`}
+              <Image
+                src={getImgSrc(filteredItems[selectedItemIndex].filename)}
                 alt={filteredItems[selectedItemIndex].title}
-                className="max-w-full max-h-full object-contain"
+                fill
+                unoptimized
+                className="object-contain"
+                priority
               />
             </div>
 
@@ -481,7 +492,7 @@ export default function AICatalog() {
               <div className="pt-6 border-t border-outline-variant flex justify-between items-center text-xs font-mono text-on-surface-variant">
                 <span>YEAR: {filteredItems[selectedItemIndex].year}</span>
                 <a
-                  href={`/ai-imgs/${filteredItems[selectedItemIndex].filename}`}
+                  href={getImgSrc(filteredItems[selectedItemIndex].filename)}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-primary hover:underline flex items-center gap-1"
