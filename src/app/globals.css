@@ -66,20 +66,84 @@
   --font-display: Geist, sans-serif;
   --font-body: Geist, sans-serif;
   --font-label: Geist, sans-serif;
+
+  /* Custom Easing & Motion Curves */
+  --ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-snappy: cubic-bezier(0.2, 0, 0, 1);
+  --duration-fast: 150ms;
+  --duration-normal: 250ms;
+  --duration-slow: 400ms;
 }
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleUp {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes floatAmbient {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn var(--duration-slow) var(--ease-spring) forwards;
+}
+
+.animate-scale-up {
+  animation: scaleUp var(--duration-normal) var(--ease-spring) forwards;
+}
+
+.animate-float {
+  animation: floatAmbient 4s ease-in-out infinite;
+}
+
+.stagger-1 { animation-delay: 60ms; }
+.stagger-2 { animation-delay: 120ms; }
+.stagger-3 { animation-delay: 180ms; }
+.stagger-4 { animation-delay: 240ms; }
+.stagger-5 { animation-delay: 300ms; }
 
 body {
   background-color: var(--color-background);
   color: var(--color-on-background);
   font-family: var(--font-body);
   scroll-behavior: smooth;
-  transition: background-color 0.5s ease-out;
+  transition: background-color 0.4s var(--ease-snappy);
 }
 
 .glass-card {
-  background: rgba(18, 18, 21, 0.8);
-  backdrop-filter: blur(8px);
+  background: rgba(18, 18, 21, 0.75);
+  backdrop-filter: blur(12px);
   border: 1px solid var(--color-outline-variant);
+  transition: transform var(--duration-normal) var(--ease-spring),
+              border-color var(--duration-normal) var(--ease-snappy),
+              box-shadow var(--duration-normal) var(--ease-snappy);
+}
+
+.glass-card:hover {
+  border-color: rgba(56, 189, 248, 0.4);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(56, 189, 248, 0.08);
 }
 
 .material-symbols-outlined {
@@ -88,4 +152,63 @@ body {
 
 .hide-scrollbar::-webkit-scrollbar { 
   display: none; 
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ── Custom circular cursor ── */
+@media (hover: hover) and (pointer: fine) {
+  body,
+  a, button, [role='button'], input, textarea, select, label, [data-cursor-hover] {
+    cursor: none;
+  }
+}
+
+.cursor-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  border-style: solid;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transition:
+    width 0.18s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    height 0.18s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    border-color 0.2s ease,
+    background-color 0.2s ease,
+    opacity 0.3s ease,
+    border-width 0.18s ease;
+  mix-blend-mode: normal;
+}
+
+.cursor-dot {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 10000;
+  transition:
+    background-color 0.2s ease,
+    opacity 0.3s ease,
+    transform 0.1s ease;
+}
+
+@media (pointer: coarse) {
+  body, a, button, [role='button'], input, textarea, select, label {
+    cursor: auto !important;
+  }
+  .cursor-ring, .cursor-dot {
+    display: none !important;
+  }
 }

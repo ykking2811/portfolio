@@ -7,7 +7,7 @@ export default function Footer() {
     <footer className="w-full py-12 border-t border-outline-variant bg-background pb-24 md:pb-12">
       <div className="flex flex-col md:flex-row justify-between items-center px-6 md:px-12 max-w-7xl mx-auto gap-6">
         <div className="flex items-center gap-2">
-          <Image src={logo} alt="YK Logo" width={32} height={32} className="rounded" />
+          <Image src={logo} alt="YK Logo" width={32} height={32} className="rounded" suppressHydrationWarning />
         </div>
         <p className="font-body text-sm text-on-surface-variant text-center md:text-left">
           © 2024 Yashodhan Kulkarni. Built with precision.
@@ -28,6 +28,14 @@ export default function Footer() {
             rel="noopener noreferrer"
           >
             LinkedIn
+          </a>
+          <a
+            className="text-on-surface-variant hover:text-primary transition-colors hover:underline decoration-primary underline-offset-4"
+            href="https://www.youtube.com/@TechGeniusYK"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            YouTube
           </a>
           <a
             className="text-on-surface-variant hover:text-primary transition-colors hover:underline decoration-primary underline-offset-4"

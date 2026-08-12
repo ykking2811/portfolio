@@ -1,5 +1,3 @@
-const isGithubActions = process.env.GITHUB_ACTIONS || false;
-
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: 'export',
@@ -7,8 +5,7 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
-  basePath: isGithubActions ? '/portfolio_website' : '',
-  assetPrefix: isGithubActions ? '/portfolio_website/' : '',
+  basePath: process.env.NEXT_PUBLIC_BASE_PATH || '',
   allowedDevOrigins: ['192.168.31.27'],
 };
 
