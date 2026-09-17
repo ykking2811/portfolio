@@ -1,7 +1,52 @@
 import Link from "next/link";
 import ProjectCard from "@/components/ProjectCard";
 
-export default function Projects() {
+async function getRepositories() {
+  try {
+    const res = await fetch("https://api.github.com/users/ykking2811/repos?sort=pushed&direction=desc&per_page=15", {
+      next: { revalidate: 3600 } // Cache for 1 hour
+    });
+    
+    if (!res.ok) {
+      return [];
+    }
+    
+    const data = await res.json();
+    
+    // Filter out forks and return top 6
+    return data
+      .filter((repo: any) => !repo.fork)
+      .slice(0, 6)
+      .map((repo: any) => {
+        const lang = repo.language?.toLowerCase() || '';
+        const name = repo.name.toLowerCase();
+        let icon = 'code';
+        
+        if (name.includes('sync') || name.includes('network')) icon = 'hub';
+        else if (name.includes('pid') || name.includes('control')) icon = 'settings_input_component';
+        else if (name.includes('sahaayata') || name.includes('link')) icon = 'diversity_1';
+        else if (lang === 'python') icon = 'terminal';
+        else if (lang === 'java' || lang === 'c++') icon = 'memory';
+        else if (lang === 'typescript' || lang === 'javascript') icon = 'javascript';
+        
+        return {
+          id: repo.id,
+          title: repo.name,
+          description: repo.description || "No description provided.",
+          icon: icon,
+          tags: [repo.language, ...(repo.topics || [])].filter(Boolean).slice(0, 3),
+          link: repo.html_url,
+        };
+      });
+  } catch (error) {
+    console.error("Failed to fetch repositories:", error);
+    return [];
+  }
+}
+
+export default async function Projects() {
+  const projects = await getRepositories();
+
   return (
     <main className="pt-16 pb-32 px-6 md:px-12 max-w-7xl mx-auto">
       {/* Hero Section */}
@@ -27,141 +72,62 @@ export default function Projects() {
         </Link>
       </header>
 
-      {/* Featured Projects - Bento Grid */}
+      {/* Featured Project: JARVIS-OS */}
+      <section className="mb-24">
+        <div className="flex items-center gap-3 mb-8">
+          <span className="material-symbols-outlined text-tertiary" style={{ fontVariationSettings: "'FILL' 1" }}>smart_toy</span>
+          <h2 className="text-2xl font-headline font-bold text-on-surface uppercase tracking-widest">Major Feature</h2>
+        </div>
+        
+        <div className="bg-surface-container border border-outline-variant rounded-xl overflow-hidden flex flex-col lg:flex-row group hover:border-tertiary/50 transition-colors duration-300 relative">
+          <div className="lg:w-2/5 p-10 flex flex-col justify-center bg-surface-container-low border-r border-outline-variant relative z-10">
+            <h3 className="text-3xl font-headline font-bold text-on-surface mb-4">JARVIS-OS</h3>
+            <p className="text-on-surface-variant mb-6 text-lg leading-relaxed">
+              Offline-first, JARVIS-style local AI assistant running completely on-device. A privacy-preserving powerhouse featuring chat, code, vision/PDF reading, image generation, embedded dev, and voice in/out.
+            </p>
+            <p className="text-tertiary font-medium text-sm tracking-wide uppercase mb-8">Nothing leaves the machine.</p>
+            <div className="flex flex-wrap gap-2 mt-auto">
+              <span className="px-3 py-1.5 bg-surface-container-highest border border-outline-variant rounded-md text-xs text-on-surface font-mono font-bold tracking-tight">Local LLM</span>
+              <span className="px-3 py-1.5 bg-surface-container-highest border border-outline-variant rounded-md text-xs text-on-surface font-mono font-bold tracking-tight">Privacy-First</span>
+              <span className="px-3 py-1.5 bg-surface-container-highest border border-outline-variant rounded-md text-xs text-on-surface font-mono font-bold tracking-tight">Voice / Vision</span>
+            </div>
+          </div>
+          <div className="lg:w-3/5 relative overflow-hidden bg-surface-container-highest flex items-center justify-center min-h-[300px]">
+             {/* Decorative tech background */}
+             <div className="absolute inset-0 opacity-20 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-tertiary/40 via-surface-container-highest to-surface-container-highest"></div>
+             <div className="text-center relative z-10 p-8">
+                <span className="material-symbols-outlined text-[120px] text-tertiary/40 group-hover:text-tertiary/80 transition-colors duration-500 drop-shadow-lg">memory</span>
+                <p className="mt-4 font-mono text-xs text-tertiary/60 tracking-widest uppercase">System Online // All Ports Secured</p>
+             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Featured Projects */}
       <section className="mb-24">
         <div className="flex items-center gap-3 mb-8">
           <span className="material-symbols-outlined text-primary" style={{ fontVariationSettings: "'FILL' 1" }}>star</span>
-          <h2 className="text-2xl font-headline font-bold text-on-surface uppercase tracking-widest">Featured Projects</h2>
+          <h2 className="text-2xl font-headline font-bold text-on-surface uppercase tracking-widest">Recent Activity</h2>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-4">
-          {/* Node-Sync (Major Card) */}
-          <div className="md:col-span-8 bg-surface-container border border-outline-variant rounded-xl overflow-hidden flex flex-col md:flex-row group hover:border-primary/50 transition-colors duration-300">
-            <div className="md:w-1/2 overflow-hidden bg-surface-container-highest">
-              <img 
-                alt="Node-Sync Visualization" 
-                className="w-full h-full object-cover grayscale opacity-50 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500 scale-105 group-hover:scale-100" 
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDiIrLGf3ld4D9wcbZ7TikV6svUm2jnpEtI-kIXlOlGyD13U_zgr2_s2ifTsWfUvNuTNllSNTcn882rswZh_-JLqfdw_5RdskU4sC3Ij04s0YpfTRgOHEHQToOJd6Tw3NlrCXc32J9oafHsW9sJ1JW_OOegL4wIdm_qcqeAqZPCe2Co8Jcvv0TOJeyqscqrCOxhWd52aAM7wrDTYo3vUUCHOKDLmPjR9NYcZ7rQbVhpnNwFNJghIbbLTikx41XYG8kghpkxZ73nOdw" 
+        {projects.length > 0 ? (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {projects.map((project: any) => (
+              <ProjectCard
+                key={project.id}
+                title={project.title}
+                description={project.description}
+                icon={project.icon}
+                tags={project.tags}
+                link={project.link}
               />
-            </div>
-            <div className="md:w-1/2 p-8 flex flex-col">
-              <div className="flex justify-between items-start mb-4">
-                <h3 className="text-2xl font-headline font-bold text-on-surface">Node-Sync</h3>
-                <a className="text-on-surface-variant hover:text-primary transition-colors" href="https://github.com/ykking2811/Node-Sync" target="_blank" rel="noopener noreferrer">
-                  <span className="material-symbols-outlined">open_in_new</span>
-                </a>
-              </div>
-              <p className="text-on-surface-variant mb-6 flex-grow">
-                A high-performance node synchronization protocol designed for distributed systems, ensuring data integrity across low-latency networks.
-              </p>
-              <div className="flex flex-wrap gap-2 mb-6">
-                <span className="px-3 py-1 bg-surface-container-highest border border-outline-variant rounded text-xs text-primary font-mono">Node.js</span>
-                <span className="px-3 py-1 bg-surface-container-highest border border-outline-variant rounded text-xs text-primary font-mono">Systems</span>
-              </div>
-              <details className="group/read">
-                <summary className="list-none cursor-pointer text-primary font-bold flex items-center gap-1 group-hover/read:underline">
-                  READ MORE <span className="material-symbols-outlined text-sm transition-transform group-open/read:rotate-180">expand_more</span>
-                </summary>
-                <div className="mt-4 text-sm text-on-surface-variant space-y-4 border-t border-outline-variant pt-4">
-                  <p><strong className="text-on-surface">Problem:</strong> Data drift in highly decentralized IoT clusters during intermittent connectivity.</p>
-                  <p><strong className="text-on-surface">Approach:</strong> Implementing a custom diff-based reconciliation algorithm using merkle trees.</p>
-                  <p><strong className="text-on-surface">Features:</strong> Real-time conflict resolution, 99.9% uptime replication, and hardware-agnostic architecture.</p>
-                </div>
-              </details>
-            </div>
+            ))}
           </div>
-
-          {/* PID-Learning-Process */}
-          <div className="md:col-span-4 bg-surface-container border border-outline-variant rounded-xl p-8 flex flex-col hover:border-primary/50 transition-colors duration-300">
-            <div className="flex justify-between items-start mb-6">
-              <div className="w-12 h-12 rounded bg-primary/10 flex items-center justify-center">
-                <span className="material-symbols-outlined text-primary">settings_input_component</span>
-              </div>
-              <a className="text-on-surface-variant hover:text-primary transition-colors" href="https://github.com/ykking2811/PID-Learning-Process" target="_blank" rel="noopener noreferrer">
-                <span className="material-symbols-outlined">open_in_new</span>
-              </a>
-            </div>
-            <h3 className="text-xl font-headline font-bold text-on-surface mb-2">PID-Learning-Process</h3>
-            <p className="text-on-surface-variant mb-6 text-sm">
-              Interactive control system simulation for Proportional-Integral-Derivative controllers in automated environments.
-            </p>
-            <div className="flex flex-wrap gap-2 mb-6 mt-auto">
-              <span className="px-3 py-1 bg-surface-container-highest border border-outline-variant rounded text-xs text-tertiary font-mono">Python</span>
-              <span className="px-3 py-1 bg-surface-container-highest border border-outline-variant rounded text-xs text-tertiary font-mono">Embedded</span>
-            </div>
-            <details className="group/read">
-              <summary className="list-none cursor-pointer text-primary font-bold flex items-center gap-1 group-hover/read:underline">
-                READ MORE <span className="material-symbols-outlined text-sm transition-transform group-open/read:rotate-180">expand_more</span>
-              </summary>
-              <div className="mt-4 text-sm text-on-surface-variant space-y-4 border-t border-outline-variant pt-4">
-                <p><strong className="text-on-surface">Problem:</strong> Complexity in tuning PID loops for non-linear industrial motor controllers.</p>
-                <p><strong className="text-on-surface">Approach:</strong> Visualizing mathematical error correction through dynamic graph plotting.</p>
-              </div>
-            </details>
+        ) : (
+          <div className="p-8 text-center bg-surface-container-low border border-outline-variant rounded-xl">
+            <p className="text-on-surface-variant">Could not load recent projects. Please check back later.</p>
           </div>
-
-          {/* Sahaayata-Link */}
-          <div className="md:col-span-4 bg-surface-container border border-outline-variant rounded-xl p-8 flex flex-col hover:border-primary/50 transition-colors duration-300">
-            <div className="flex justify-between items-start mb-6">
-              <div className="w-12 h-12 rounded bg-tertiary/10 flex items-center justify-center">
-                <span className="material-symbols-outlined text-tertiary">diversity_1</span>
-              </div>
-              <a className="text-on-surface-variant hover:text-primary transition-colors" href="https://github.com/ykking2811/Sahaayata-Link" target="_blank" rel="noopener noreferrer">
-                <span className="material-symbols-outlined">open_in_new</span>
-              </a>
-            </div>
-            <h3 className="text-xl font-headline font-bold text-on-surface mb-2">Sahaayata-Link</h3>
-            <p className="text-on-surface-variant mb-6 text-sm">
-              A community-driven support platform connecting volunteers with local aid requests during crises.
-            </p>
-            <div className="flex flex-wrap gap-2 mb-6 mt-auto">
-              <span className="px-3 py-1 bg-surface-container-highest border border-outline-variant rounded text-xs text-primary font-mono">Java</span>
-              <span className="px-3 py-1 bg-surface-container-highest border border-outline-variant rounded text-xs text-primary font-mono">Android</span>
-            </div>
-            <details className="group/read">
-              <summary className="list-none cursor-pointer text-primary font-bold flex items-center gap-1 group-hover/read:underline">
-                READ MORE <span className="material-symbols-outlined text-sm transition-transform group-open/read:rotate-180">expand_more</span>
-              </summary>
-              <div className="mt-4 text-sm text-on-surface-variant space-y-4 border-t border-outline-variant pt-4">
-                <p><strong className="text-on-surface">Approach:</strong> Geolocation-based matching using real-time spatial databases.</p>
-              </div>
-            </details>
-          </div>
-
-          {/* Ticketer (Horizontal Feature) */}
-          <div className="md:col-span-8 bg-surface-container border border-outline-variant rounded-xl overflow-hidden flex flex-col md:flex-row-reverse group hover:border-primary/50 transition-colors duration-300">
-            <div className="md:w-1/2 overflow-hidden bg-surface-container-highest">
-              <img 
-                alt="Ticketer Visual" 
-                className="w-full h-full object-cover grayscale opacity-50 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500 scale-105 group-hover:scale-100" 
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDWK-IfPmKhJGfnGIoIHZG-B7VNuxm55brIGwPSy2-PbNHX72Nw5whiYDTK9oXPM6iHiy3ExciR1EvvaiXuHlFit_FrMw8mqBV5TOEd1fOnBECDZcDrbBS_1QAEmQbBtJNY8jMFFaejFe2nEkxTEhhi_ox5_19M7aBxaIUWl90F-enK9pKuGGju_XXQtBFLVjrolGmGuwucp4MsSAkxZl0pBUzJxxyEXAhI177c5VPM8TClK-GFBTaVD_TaJdLetIVabQ8HOw0N5GE" 
-              />
-            </div>
-            <div className="md:w-1/2 p-8 flex flex-col">
-              <div className="flex justify-between items-start mb-4">
-                <h3 className="text-2xl font-headline font-bold text-on-surface">Ticketer</h3>
-                <a className="text-on-surface-variant hover:text-primary transition-colors" href="https://github.com/ykking2811/Ticketer" target="_blank" rel="noopener noreferrer">
-                  <span className="material-symbols-outlined">open_in_new</span>
-                </a>
-              </div>
-              <p className="text-on-surface-variant mb-6 flex-grow">
-                Advanced event ticketing system prioritizing security and anti-scalping measures through unique identifier hashing.
-              </p>
-              <div className="flex flex-wrap gap-2 mb-6">
-                <span className="px-3 py-1 bg-surface-container-highest border border-outline-variant rounded text-xs text-tertiary font-mono">C++</span>
-                <span className="px-3 py-1 bg-surface-container-highest border border-outline-variant rounded text-xs text-tertiary font-mono">Security</span>
-              </div>
-              <details className="group/read">
-                <summary className="list-none cursor-pointer text-primary font-bold flex items-center gap-1 group-hover/read:underline">
-                  READ MORE <span className="material-symbols-outlined text-sm transition-transform group-open/read:rotate-180">expand_more</span>
-                </summary>
-                <div className="mt-4 text-sm text-on-surface-variant space-y-4 border-t border-outline-variant pt-4">
-                  <p><strong className="text-on-surface">Features:</strong> Fast-pass processing, encrypted QR generation, and real-time validation.</p>
-                </div>
-              </details>
-            </div>
-          </div>
-        </div>
+        )}
       </section>
 
       {/* More Projects List */}

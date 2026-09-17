@@ -2,35 +2,6 @@ import Link from "next/link";
 import TextScrambler from "@/components/TextScrambler";
 
 export default function Gaming() {
-  const games = [
-    {
-      title: "Cyberpunk 2077",
-      status: "Playing",
-      genre: "Action RPG / Sci-Fi",
-      platform: "PC",
-      rating: "5/5",
-      image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDiIrLGf3ld4D9wcbZ7TikV6svUm2jnpEtI-kIXlOlGyD13U_zgr2_s2ifTsWfUvNuTNllSNTcn882rswZh_-JLqfdw_5RdskU4sC3Ij04s0YpfTRgOHEHQToOJd6Tw3NlrCXc32J9oafHsW9sJ1JW_OOegL4wIdm_qcqeAqZPCe2Co8Jcvv0TOJeyqscqrCOxhWd52aAM7wrDTYo3vUUCHOKDLmPjR9NYcZ7rQbVhpnNwFNJghIbbLTikx41XYG8kghpkxZ73nOdw",
-      badgeColor: "bg-tertiary text-on-tertiary"
-    },
-    {
-      title: "Elden Ring",
-      status: "Completed",
-      genre: "Action RPG",
-      platform: "PC",
-      rating: "5/5",
-      image: "https://lh3.googleusercontent.com/aida-public/AB6AXuC3UkSbxUi2P24cPfLp8CGkeUnL2yd6nwxZnzeTY6x7M0vLfSGIW-TzrS4CdB6rXoTN5NPm2r1tRhsVlapG3H5Jmic1MzQCzQI-74S1T850apuYeYOmV5KSThpPtyr_fteKyQX_69-4KmuZiEx0UMRrTgltdtZbU8qnbTplFveDxKcPaVwSDmjTX4H1hNlGyWzA-9rNaaCsPVhQFF6ihsIdPYJOIrd4K8vb8ywZoPL3TL5JnevSbjhv59i15SSISMQ6cvcMSEF9M0g",
-      badgeColor: "bg-primary text-on-primary"
-    },
-    {
-      title: "Red Dead Redemption 2",
-      status: "Mastered",
-      genre: "Open World / Action",
-      platform: "PC",
-      rating: "5/5",
-      image: "https://lh3.googleusercontent.com/aida-public/AB6AXuBXrnRFEGB4xPKG_UyJ33oH6fj-3vZXsGB1WAw9pNJ6NHgVj0w00kbht3dPqtNojHCagLNJdzvAx07LXrg88vkT-pSi8p7Iia6HC3W7zq8goKe1K5FkTRGXKBJ7EmuweUk5-be3_EPtIJ1gtsjWeL6cavdhItQLcZYs3hW-1kwq_2elMQlhtpKJiWLR9Cso_P1_1em5KncgCwW5xwFFOVc4JqdMJVrDqqYybXEppKRx1HaXjZXKKM8rry6uZjyUDjmg0oc_rhoBSHs",
-      badgeColor: "bg-surface-container-highest text-secondary-fixed"
-    }
-  ];
 
   return (
     <main className="pt-16 pb-24 px-6 md:px-12 max-w-7xl mx-auto min-h-[80vh] animate-fade-in">
@@ -76,41 +47,25 @@ export default function Gaming() {
         </div>
       </section>
 
-      {/* Featured Games Grid */}
+      {/* GG App Live Profile Embed */}
       <section>
         <h3 className="text-2xl font-headline font-bold mb-8 flex items-center gap-2">
           <span className="material-symbols-outlined text-tertiary">videogame_asset</span>
-          Recent & Current Log
+          Live Sync
         </h3>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {games.map((game, idx) => (
-            <div
-              key={game.title}
-              className="glass-card rounded-xl overflow-hidden group hover:-translate-y-1.5 transition-all duration-300"
-            >
-              <div className="h-48 relative overflow-hidden bg-surface-container-highest">
-                <img
-                  src={game.image}
-                  alt={game.title}
-                  className="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700 opacity-60 group-hover:opacity-100"
-                />
-                <div className="absolute top-4 right-4">
-                  <span className={`px-3 py-1 rounded-full text-xs font-bold ${game.badgeColor}`}>
-                    {game.status}
-                  </span>
-                </div>
-              </div>
-              <div className="p-6">
-                <h4 className="text-xl font-bold mb-2 group-hover:text-primary transition-colors">
-                  {game.title}
-                </h4>
-                <div className="flex justify-between items-center text-sm text-on-surface-variant">
-                  <span>{game.genre}</span>
-                  <span className="font-mono text-tertiary">{game.platform}</span>
-                </div>
-              </div>
+        <div className="w-full bg-surface-container-low border border-outline-variant rounded-xl overflow-hidden h-[800px] relative">
+          <div className="absolute inset-0 flex items-center justify-center -z-10 bg-surface-container-lowest">
+            <div className="flex flex-col items-center gap-4 text-on-surface-variant">
+              <span className="material-symbols-outlined animate-spin">refresh</span>
+              <span>Syncing with GG App...</span>
             </div>
-          ))}
+          </div>
+          <iframe 
+            src="https://ggapp.io/yk_King" 
+            title="GG App Profile - yk_King"
+            className="w-full h-full border-0 bg-transparent relative z-10"
+            sandbox="allow-scripts allow-same-origin allow-popups"
+          />
         </div>
       </section>
     </main>
